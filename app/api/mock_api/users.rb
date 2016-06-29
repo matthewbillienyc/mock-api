@@ -11,6 +11,14 @@ module MockAPI
         User.all
       end
 
+      desc 'show'
+      params do
+      end
+      get do
+        User.find(params[:id])
+        byebug
+      end
+
       desc 'create'
       params do
         requires :name, type: String
