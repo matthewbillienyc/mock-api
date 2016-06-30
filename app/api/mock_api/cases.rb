@@ -23,8 +23,8 @@ module MockAPI
       params do
 
       end
-      get 'users/:id/cases' do
-        Case.find_all(params[:id])
+      get '/users/:id' do
+        @cases = Case.where(user_id: params[:id])
       end
 
       desc 'update'
