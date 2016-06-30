@@ -19,6 +19,14 @@ module MockAPI
           Case.find(params[:id])
         end
 
+      desc 'find all by user id'
+      params do
+
+      end
+      get 'users/:id/cases' do
+        Case.find_all(params[:id])
+      end
+
       desc 'update'
         params do
           requires :name, type: String
