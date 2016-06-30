@@ -24,7 +24,8 @@ module MockAPI
           requires :name, type: String
         end
         put ":id" do
-          User.update(name: params[:name])
+          @user = User.find(params[:id])
+          @user.update(name: params[:name])
         end
 
       desc 'create'
