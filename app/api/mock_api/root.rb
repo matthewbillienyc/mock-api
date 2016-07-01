@@ -3,5 +3,6 @@ module MockAPI
     prefix 'mockapi'
     mount MockAPI::Users
     mount MockAPI::Cases
+    mount MockAPI::Accounts
   end
 end
