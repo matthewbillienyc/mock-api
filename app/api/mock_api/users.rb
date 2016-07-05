@@ -30,10 +30,11 @@ module MockAPI
 
       desc 'create'
         params do
-          requires :name, type: String
+          requires :first_name, type: String
+          requires :last_name, type: String
         end
         post do
-          User.create(name: params[:name])
+          User.create(first_name: params[:first_name], last_name: params[:last_name])
         end
     end
   end
