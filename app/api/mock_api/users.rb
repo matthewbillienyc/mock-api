@@ -1,4 +1,4 @@
-module MockAPI
+womodule MockAPI
   class Users < Grape::API
     format :json
 
