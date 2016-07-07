@@ -38,10 +38,11 @@ module MockAPI
 
       desc 'create'
         params do
-          requires :name, type: String
+          requires :description, type: String
+          requires :user_id, type: Integer
         end
         post do
-          Case.create(name: params[:name])
+          Case.create(description: params[:description], user_id: params[:user_id])
         end
     end
   end
