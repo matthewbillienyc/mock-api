@@ -21,11 +21,12 @@ module MockAPI
 
       desc 'update'
         params do
-          requires :name, type: String
+          requires :first_name, type: String
+          requires :last_name, type: String
         end
         put ":id" do
           @user = User.find(params[:id])
-          @user.update(name: params[:name])
+          @user.update(first_name: params[:first_name], last_name: params[:last_name])
         end
 
       desc 'create'
