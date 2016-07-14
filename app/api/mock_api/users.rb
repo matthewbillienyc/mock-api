@@ -32,11 +32,28 @@ module MockAPI
 
       desc 'create'
         params do
+          requires :email, type: String
+          requires :password, type: String
+          requires :password_confirmation, type: String
           requires :first_name, type: String
           requires :last_name, type: String
         end
         post do
-          User.create(first_name: params[:first_name], last_name: params[:last_name])
+          User.create(first_name: params[:first_name], last_name: params[:last_name], email: params[:email], password: params[:password], password_confirmation: params[:password_confirmation])
+        end
+
+      desc 'logon'
+        params do
+          requires :email, type: String
+          requires :password, type: String
+        end
+        post 'logon' do
+          user = User.find_by(email: params[:email])
+          if user && user.authenticate(params[:password])
+            { status: 'success' }
+          else
+            { status: 'failure' }
+          end
         end
     end
   end
