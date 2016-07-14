@@ -27,7 +27,7 @@ module MockAPI
         put ":id" do
           user = User.find(params[:id])
           user.update(first_name: params[:first_name], last_name: params[:last_name])
-          return { first_name: user.first_name, last_name: user.last_name }
+          return { id: user.id, first_name: user.first_name, last_name: user.last_name }
         end
 
       desc 'create'
