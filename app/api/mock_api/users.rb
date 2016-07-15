@@ -50,8 +50,9 @@ module MockAPI
         end
         post 'logon' do
           user = User.find_by(email: params[:email])
+          byebug
           if user && user.authenticate(params[:password])
-            { status: 'success' }
+            { status: 'success', role: user.role }
           else
             { status: 'failure' }
           end
