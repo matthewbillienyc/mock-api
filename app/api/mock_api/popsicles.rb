@@ -10,9 +10,23 @@ module MockAPI
       end
 
       desc 'popsicle details'
-      get ':serialNumber' do
+      get ':serial_number' do
         # error!('Unauthorized', 401) unless headers.key_ignore_case_sensitive?('Logon-Id')
-        Popsicle.find_by(serial_number: params[:serialNumber]).details
+        popsicle = Popsicle.where('popsicles.serial_number = ?', params[:serial_number])[0]
+        popsicle.details
+      end
+
+      desc 'popsicle rating'
+      params do
+        requires(:rating, type: String)
+        requires(:response_text, type: String)
+        requires(:serial_number, type: String)
+      end
+      post 'rate' do
+        popsicle = Popsicle.where('popsicles.serial_number = ?', params[:serial_number])[0]
+        popsicle.response.update(rating: params[:rating], response_text: params[:response_text])
+        popsicle.update(status: "R")
+        { response: popsicle.response, status: popsicle.status }
       end
     end
   end

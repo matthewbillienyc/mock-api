@@ -1,5 +1,6 @@
 class Popsicle < ActiveRecord::Base
   has_one :stick
+  has_one :response
   belongs_to :company
 
   def self.get_all_summaries
@@ -15,12 +16,13 @@ class Popsicle < ActiveRecord::Base
   end
 
   def details
-    { 
-        serial_number: self.serial_number, 
-        flavor: self.flavor, 
-        color: self.color, 
-        rating: self.rating, 
+    {
+        serial_number: self.serial_number,
+        flavor: self.flavor,
+        color: self.color,
+        rating: self.rating,
         shape: self.shape,
+        status: self.status,
         stick: {
                 wood_type: self.stick.wood_type,
                 color: self.stick.color,
@@ -36,7 +38,11 @@ class Popsicle < ActiveRecord::Base
         company: {
                   name: self.company.name,
                   popsicle_varieties: self.company.popsicles.length
-                 }
+                },
+        response: {
+                    rating: self.response.rating,
+                    response_text: self.response.response_text
+                  }
        }
   end
 end
