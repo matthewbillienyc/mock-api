@@ -5,5 +5,6 @@ module MockAPI
     mount MockAPI::Cases
     mount MockAPI::Accounts
     mount MockAPI::Popsicles
+    mount MockAPI::Notes
   end
 end

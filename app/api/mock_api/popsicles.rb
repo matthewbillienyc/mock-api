@@ -12,7 +12,7 @@ module MockAPI
       desc 'popsicle details'
       get ':serial_number' do
         # error!('Unauthorized', 401) unless headers.key_ignore_case_sensitive?('Logon-Id')
-        popsicle = Popsicle.where('popsicles.serial_number = ?', params[:serial_number])[0]
+        popsicle = Popsicle.where('popsicles.serial_number = ?', params[:serial_number]).first
         popsicle.details
       end
 
