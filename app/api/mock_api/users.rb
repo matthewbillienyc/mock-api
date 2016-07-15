@@ -8,6 +8,7 @@ module MockAPI
           # parameters go here
         end
         get do
+
           User.all
         end
 
