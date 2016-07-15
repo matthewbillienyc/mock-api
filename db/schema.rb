@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160715142459) do
+ActiveRecord::Schema.define(version: 20160715152833) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,6 +31,36 @@ ActiveRecord::Schema.define(version: 20160715142459) do
     t.string   "description"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+  end
+
+  create_table "companies", force: :cascade do |t|
+    t.string  "name"
+    t.integer "popsicle_varieties"
+  end
+
+  create_table "jokes", force: :cascade do |t|
+    t.string  "question"
+    t.string  "punchline"
+    t.integer "dirtiness"
+    t.integer "funniness"
+    t.string  "author"
+    t.integer "stick_id"
+  end
+
+  create_table "popsicles", force: :cascade do |t|
+    t.string  "flavor"
+    t.string  "color"
+    t.string  "rating"
+    t.string  "shape"
+    t.string  "serial_number"
+    t.integer "company_id"
+  end
+
+  create_table "sticks", force: :cascade do |t|
+    t.string  "wood_type"
+    t.string  "color"
+    t.integer "centimeters"
+    t.integer "popsicle_id"
   end
 
   create_table "users", force: :cascade do |t|
