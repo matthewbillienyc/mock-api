@@ -4,6 +4,7 @@ module MockAPI
     mount MockAPI::Users
     mount MockAPI::Cases
     mount MockAPI::Accounts
-    mount MockAPI::Addresses
+    mount MockAPI::Popsicles
+    mount MockAPI::Notes
   end
 end
