@@ -29,19 +29,21 @@ module MockAPI
 
       desc 'update'
         params do
-          requires :name, type: String
+          requires :description, type: String
         end
         put ":id" do
           @case = Case.find(params[:id])
-          @case.update(name: params[:name])
+          @case.update(description: params[:description])
+          return { description: @case.description}
         end
 
       desc 'create'
         params do
-          requires :name, type: String
+          requires :description, type: String
+          requires :user_id, type: Integer
         end
         post do
-          Case.create(name: params[:name])
+          Case.create(description: params[:description], user_id: params[:user_id])
         end
     end
   end
