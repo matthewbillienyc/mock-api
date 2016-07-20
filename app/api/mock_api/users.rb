@@ -40,7 +40,8 @@ module MockAPI
           requires :last_name, type: String
         end
         post do
-          User.create(first_name: params[:first_name], last_name: params[:last_name], email: params[:email], password: params[:password], password_confirmation: params[:password_confirmation])
+          user = User.create(first_name: params[:first_name], last_name: params[:last_name], email: params[:email], password: params[:password], password_confirmation: params[:password_confirmation])
+          { email: user.email, role: user.role }
         end
 
       desc 'logon'
@@ -50,7 +51,6 @@ module MockAPI
         end
         post 'logon' do
           user = User.find_by(email: params[:email])
-          byebug
           if user && user.authenticate(params[:password])
             { status: 'success', role: user.role }
           else
